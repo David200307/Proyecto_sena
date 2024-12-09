@@ -47,6 +47,7 @@ const createTask = async (task) =>{
     try {
         const res = await createTaskRequest(task);
         console.log(res.data);
+        setTasks(prevTasks => [...prevTasks, res.data]);
       } catch (error) {
         console.log(error);
       }
