@@ -11,7 +11,8 @@ app.use(cors({
     'http://localhost:5173',
     'https://proyecto-sena-frontend.onrender.com'
   ],
-  credentials: true
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(morgan('dev'));
