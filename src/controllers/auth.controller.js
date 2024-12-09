@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs'
 import { createAccesToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
+
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const register =  async (req, res) => {
     
    const {email, password, username} = req.body
@@ -22,7 +25,12 @@ export const register =  async (req, res) => {
 
         const userSaved = await newUser.save()
         const token = await createAccesToken({ id:userSaved._id})
-        res.cookie('token', token, {});
+        res.cookie('token', token, {
+            httpOnly: true,                
+            secure: isProduction,          
+            sameSite: 'None',              
+            maxAge: 3600000
+        });
         res.json({
             id: userSaved._id,
             username: userSaved.username,
@@ -49,7 +57,12 @@ export const login =  async (req, res) => {
  
          
          const token = await createAccesToken({ id:userFound._id});
-         res.cookie('token', token)
+         res.cookie('token', token, {
+            httpOnly: true,                
+            secure: isProduction,          
+            sameSite: 'None',              
+            maxAge: 3600000
+         })
          res.json({
              id: userFound._id,
              username: userFound.username,
