@@ -7,8 +7,11 @@ import cors  from "cors";
 
 const app = express()
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://proyecto-sena-frontend.onrender.com'],
-    credentials: true
+  origin: [
+      'http://localhost:5173', // URL de desarrollo
+      'https://proyecto-sena-frontend.onrender.com', // URL de producción
+  ],
+  credentials: true,  // Permite el envío de cookies con las solicitudes
 }));
 app.use(morgan('dev'));
 app.use(express.json());
