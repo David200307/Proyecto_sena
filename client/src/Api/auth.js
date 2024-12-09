@@ -1,6 +1,8 @@
 import axios from "./axios.js";
 
-const API = 'http://Localhost:3000/api'
+const API = process.env.NODE_ENV === 'production' 
+    ? 'https://proyecto-back-d1m5.onrender.com'  // URL de producción
+    : 'http://localhost:3000/api';  // Usará localhost en desarrollo
 
 export const registerRequest = user => axios.post(`/register`, user)
 

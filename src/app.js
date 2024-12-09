@@ -13,6 +13,10 @@ app.use(cors({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
+
+app.get('/', (req, res) => {
+    res.send('Bienvenido al backend de la aplicación');
+  });
 app.use("/api", authRoutes);
 app.use("/api", taskRoutes);
 
