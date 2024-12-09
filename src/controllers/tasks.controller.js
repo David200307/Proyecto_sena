@@ -44,7 +44,7 @@ export const deleteTask = async (req, res) => {
     try {
         const task = await Task.findByIdAndDelete(req.params.id)
     if (!task) return res.status(404).json({Message: "Task not found"})
-return res.sendStatus (204);
+return res.sendStatus (204).json({message: "TASK DELETE"});
     } catch (error) {
         return res.status (404).json ({message: "Task not found"})
 
