@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+<<<<<<< HEAD
 
 export const connectDB = async () => {
     try {
@@ -8,3 +9,13 @@ export const connectDB = async () => {
         console.error("Error al conectar con la base de datos:", error.message);
     }
 };
+=======
+export const connectDB = async () => {
+    try {
+        await mongoose.connect ('mongodb://localhost/merndb')
+        console.log("dbconect")
+    } catch (error) {
+        console.log("Error");
+    }
+}
+>>>>>>> 6aa91070582c583b849e574f184e8ec15c84bc12
